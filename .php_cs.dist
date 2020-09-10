@@ -1,5 +1,9 @@
 <?php
 
+$finder = PhpCsFixer\Finder::create()
+    ->exclude('vendor')
+    ->in(__DIR__);
+
 return PhpCsFixer\Config::create()
     ->setRules(array(
         '@PSR2' => true,
@@ -9,7 +13,8 @@ return PhpCsFixer\Config::create()
         'method_separation' => true,
         'no_multiline_whitespace_before_semicolons' => true,
         'single_quote' => true,
-
+        'no_unused_imports' => true,
+        'native_function_invocation' => true,
         'binary_operator_spaces' => array(
             'align_double_arrow' => false,
             'align_equals' => false,
@@ -53,7 +58,7 @@ return PhpCsFixer\Config::create()
         // 'no_trailing_comma_in_list_call' => true,
         // 'no_trailing_comma_in_singleline_array' => true,
         // 'no_unneeded_control_parentheses' => true,
-        // 'no_unused_imports' => true,
+        'no_unused_imports' => true,
         'no_whitespace_before_comma_in_array' => true,
         'no_whitespace_in_blank_line' => true,
         // 'normalize_index_brace' => true,
@@ -93,4 +98,4 @@ return PhpCsFixer\Config::create()
     ))
     //->setIndent("\t")
     ->setLineEnding("\n")
-;
+    ->setFinder($finder);
