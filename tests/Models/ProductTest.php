@@ -17,10 +17,4 @@ class ProductTest extends TestCase
         $product = new Product;
         $this->assertIsInt($product->getID());
     }
-
-    public function test_it_should_get_an_token_as_string()
-    {
-        $product = new Product;
-        $this->assertIsString($product->getToken());
-    }
 }
