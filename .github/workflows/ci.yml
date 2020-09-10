@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: php-actions/composer@v2
+        with:
+          command: install
+          only_args: --no-interaction --classmap-authoritative
+     - name: Running Tests
+        uses: php-actions/phpunit@v9
+        with:
+          configuration: phpunit.xml
