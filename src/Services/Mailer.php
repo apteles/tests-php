@@ -21,8 +21,8 @@ class Mailer
         return true;
     }
 
-    public static function send(string $email, string $message): bool
+    public function send(string $email, string $message): bool
     {
-        return (new self)->sendMessage($email, "Greeting {$message}");
+        return $this->sendMessage($email, "Greeting {$message}");
     }
 }

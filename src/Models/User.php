@@ -29,8 +29,8 @@ class User
         return $this->mailer->sendMessage($this->email, $message);
     }
 
-    public function notifyGreeting(string $message)
+    public function notifyGreeting(string $message): bool
     {
-        return $this->mailer::send($this->email, $message);
+        return $this->mailer->send($this->email, $message);
     }
 }
