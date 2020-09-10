@@ -8,15 +8,19 @@ class Order
 {
     public int $amount = 0;
 
-    private PaymentGatewayInterface $gateway;
+    public float $price;
 
-    public function __construct(PaymentGatewayInterface $gateway)
+    public int $quantity;
+
+    public function __construct(int $quantity, float $price)
     {
-        $this->gateway = $gateway;
+        $this->quantity = $quantity;
+        $this->price = $price;
+        $this->amount = $quantity * $price;
     }
 
-    public function process()
+    public function process(PaymentGatewayInterface $gateway)
     {
-        return $this->gateway->charge((float)$this->amount);
+        return $gateway->charge((float)$this->amount);
     }
 }
