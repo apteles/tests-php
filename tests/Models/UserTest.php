@@ -26,4 +26,19 @@ class UserTest extends TestCase
 
         $this->assertTrue($user->notify('Hello'));
     }
+
+    public function test_should_not_send_message_with_email_invalid()
+    {
+        $user = new User;
+        $user->email = 'jon.doe-domain.com.br';
+        
+        /** @var Mailer&\PHPUnit\Framework\MockObject\MockObject $mockMailer */
+
+        $mockMailer = $this->getMockBuilder(Mailer::class)->getMock();
+        $mockMailer->method('sendMessage')->will($this->throwException(new Exception()));
+        $user->setMailer($mockMailer);
+
+        $this->expectException(Exception::class);
+        $user->notify('Hello');
+    }
 }
