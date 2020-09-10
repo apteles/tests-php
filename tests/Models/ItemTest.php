@@ -27,6 +27,5 @@ class ItemTest extends TestCase
         $result = $method->invokeArgs($item, ['foo_']);
 
         $this->assertStringStartsWith('foo_', $result);
-        $this->assertIsString($result);
     }
 }
