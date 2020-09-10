@@ -8,16 +8,21 @@ class Mailer
 {
     public function sendMessage(string $email, string $message): bool
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new Exception("Invalid email");
+        if (!\filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception('Invalid email');
         }
         /**
          * simulate the delay that services like this (mail, PHPMailer) takes to perform.
          */
-        sleep(3);
+        \sleep(3);
 
         echo "sent {$message} to {$email}";
 
         return true;
+    }
+
+    public static function send(string $email, string $message): bool
+    {
+        return (new self)->sendMessage($email, "Greeting {$message}");
     }
 }

@@ -1,7 +1,7 @@
 <?php
-use PHPUnit\Framework\TestCase;
 use Acme\Models\User;
 use Acme\Services\Mailer;
+use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
@@ -31,7 +31,7 @@ class UserTest extends TestCase
     {
         $user = new User;
         $user->email = 'jon.doe-domain.com.br';
-        
+
         /** @var Mailer&\PHPUnit\Framework\MockObject\MockObject $mockMailer */
 
         $mockMailer = $this->getMockBuilder(Mailer::class)->getMock();
@@ -40,5 +40,15 @@ class UserTest extends TestCase
 
         $this->expectException(Exception::class);
         $user->notify('Hello');
+    }
+
+    public function test_should_notify_greeting()
+    {
+        $user = new User();
+        $mockMailer = $this->createMock(Mailer::class);
+        $user->setMailer($mockMailer);
+        $user->email = 'john.doe@domain.com';
+
+        $this->assertTrue($user->notifyGreeting('Thanks for join us!'));
     }
 }
