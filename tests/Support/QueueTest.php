@@ -2,36 +2,42 @@
 use PHPUnit\Framework\TestCase;
 use Acme\Support\Queue;
 
+/**
+ * https://phpunit.readthedocs.io/en/9.3/fixtures.html
+ */
 class QueueTest extends TestCase
 {
+    protected ?Queue $queue;
+    
+    protected function setUp(): void
+    {
+        $this->queue = new Queue;
+    }
+
+    public function tearDown(): void
+    {
+        $this->queue = null;
+    }
+    
+
     public function test_it_should_be_empty_when_instantiated()
     {
-        $queue = new Queue;
-
-        $this->assertEquals(0, $queue->count());
-
-        return $queue;
+        $this->assertEquals(0, $this->queue->count());
     }
 
-    /**
-     * @depends test_it_should_be_empty_when_instantiated
-     */
-    public function test_it_should_be_able_add_item_to_queue(Queue $queue)
+    
+    public function test_it_should_be_able_add_item_to_queue()
     {
-        $queue->push('Green');
+        $this->queue->push('Green');
 
-        $this->assertEquals(1, $queue->count());
-
-        return $queue;
+        $this->assertEquals(1, $this->queue->count());
     }
 
-    /**
-     * @depends test_it_should_be_able_add_item_to_queue
-     */
-    public function test_it_should_be_able_remove_item_from_queue(Queue $queue)
+   
+    public function test_it_should_be_able_remove_item_from_queue()
     {
-        $queue->pop();
+        $this->queue->pop();
 
-        $this->assertEquals(0, $queue->count());
+        $this->assertEquals(0, $this->queue->count());
     }
 }
