@@ -1,0 +1,20 @@
+{
+    "name": "apteles/php-unit-course",
+    "description": "Course to undertand the fundamental parts of phpunit",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andre Teles",
+            "email": "andre.telestp@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9.3",
+        "friendsofphp/php-cs-fixer": "^2.16"
+    },
+    "scripts": {
+        "test": "phpunit tests --testdox"
+    }
+}
