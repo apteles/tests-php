@@ -19,4 +19,4 @@ jobs:
     - name: Running Tests
       uses: php-actions/phpunit@v9
       with:
-      configuration: phpunit.xml
+        configuration: phpunit.xml
