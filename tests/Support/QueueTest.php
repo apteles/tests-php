@@ -1,6 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use Acme\Support\Queue;
+use Acme\Support\QueueException;
 
 /**
  * https://phpunit.readthedocs.io/en/9.3/fixtures.html
@@ -47,5 +48,23 @@ class QueueTest extends TestCase
         $this->queue->push('second');
 
         $this->assertEquals('first', $this->queue->pop());
+    }
+
+    public function test_it_should_be_able_add_item_until_max()
+    {
+        for ($i = 0; $i < Queue::MAX_ITEMS; $i++) {
+            $this->queue->push($i);
+        }
+
+        $this->assertEquals(Queue::MAX_ITEMS, $this->queue->count());
+    }
+
+    public function test_it_should_return_exception_when_queue_size_exceeded()
+    {
+        for ($i = 0; $i < Queue::MAX_ITEMS; $i++) {
+            $this->queue->push($i);
+        }
+        $this->expectException(QueueException::class);
+        $this->queue->push('more one');
     }
 }
