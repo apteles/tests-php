@@ -12,13 +12,11 @@ class User
 
     public string $email;
 
-
     protected Mailer $mailer;
-
 
     public function getFullName(): string
     {
-        return "$this->firstName $this->surName";
+        return \trim("$this->firstName $this->surName");
     }
 
     public function setMailer(Mailer $mailer)
