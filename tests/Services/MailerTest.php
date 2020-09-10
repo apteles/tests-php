@@ -1,7 +1,6 @@
 <?php
 
-namespace Acme\Services;
-
+use Acme\Services\Mailer;
 use PHPUnit\Framework\TestCase;
 
 class MailerTest extends TestCase
