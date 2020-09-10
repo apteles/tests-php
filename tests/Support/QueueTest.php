@@ -40,4 +40,12 @@ class QueueTest extends TestCase
 
         $this->assertEquals(0, $this->queue->count());
     }
+
+    public function test_it_should_be_able_remove_item_from_top_of_queue()
+    {
+        $this->queue->push('first');
+        $this->queue->push('second');
+
+        $this->assertEquals('first', $this->queue->pop());
+    }
 }
